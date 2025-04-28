@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\filmController;
 use App\Http\Controllers\hallController;
+use App\Http\Controllers\seatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,4 +21,14 @@ Route::get('/film', [FilmController::class, 'index']);
 
 Route::get('/film/{id}', [FilmController::class, 'show']);
 
+Route::get('/seat', [SeatController::class, 'index']);
 
+Route::get('/seat/create', [SeatController::class, 'create']);
+
+Route::post('/seat', [SeatController::class, 'store']);
+
+Route::get('/seat/edit/{id}', [SeatController::class, 'edit']);
+
+Route::post('/seat/update/{id}', [SeatController::class, 'update']);
+
+Route::get('/seat/destroy/{id}', [SeatController::class, 'destroy']);

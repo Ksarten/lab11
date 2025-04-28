@@ -16,6 +16,7 @@ class hallController extends Controller
     {
         return view('hall', ['hall' => hall::all()->where('id', $id)->first()]);
     }
+
 }
 
 

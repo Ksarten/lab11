@@ -14,7 +14,7 @@
         @foreach ($hall->seats as $seat)
             <tr>
                 <td>{{$seat->id}}</td>
-                <td>{{$seat->seat}}</td>
+                <td>{{$seat->seat_number}}</td>
             </tr>
         @endforeach
         </thead>

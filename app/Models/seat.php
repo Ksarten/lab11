@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class seat extends Model
 {
+    public $timestamps = false;
+
+    protected $fillable = ['seat_number', 'hall_id'];
+
     use HasFactory;
     public function halls(): BelongsTo
     {
