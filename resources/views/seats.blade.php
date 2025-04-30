@@ -24,5 +24,6 @@
         </tr>
     @endforeach
     </table>
+    {{ $seats->links() }}
 </body>
 </html>

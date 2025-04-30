@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class seatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('seats', ['seats' => seat::all()]);
+        $perpage = $request->perpage ?? 2;
+        return view('seats', [
+            'seats' => Seat:: paginate($perpage)->withQueryString()
+        ]);
     }
 
     public function create()
