@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\hall;
 use App\Models\seat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class seatController extends Controller
 {
@@ -61,6 +62,10 @@ class seatController extends Controller
 
     public function destroy(string $id)
     {
+        if (! Gate::allows('destroy-seat', Seat::all()->where('id', $id)->first())) {
+            return redirect('/error')->with('message',
+            'У вас нет разрешения на удаление места номер ' . $id);
+        }
         Seat::destroy($id);
         return redirect('/seat');
     }
