@@ -11,7 +11,7 @@ class seatController extends Controller
 {
     public function index(Request $request)
     {
-        $perpage = $request->perpage ?? 2;
+        $perpage = $request->perpage ?? 4;
         return view('seats', [
             'seats' => Seat:: paginate($perpage)->withQueryString()
         ]);

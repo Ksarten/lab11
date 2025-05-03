@@ -1,7 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- Блок для вывода ошибок (добавьте в начало body) -->
+<!-- Блок для вывода ошибок -->
 @if($errors->has('error'))
     <div class="fixed-top text-center" style="margin-top: 60px;">
         <div class="alert alert-danger alert-dismissible fade show d-inline-block" role="alert">

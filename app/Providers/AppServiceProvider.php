@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::defaultView('pagination::default');
+        Paginator::defaultView('pagination::bootstrap-4');
 
         Gate::define('destroy-seat', function (User $user, Seat $seat) {
             return $user->is_admin OR $seat->hall_id == 2;

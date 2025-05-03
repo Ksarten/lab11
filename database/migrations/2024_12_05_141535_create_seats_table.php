@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('hall_id');
             /*$table->foreign('halls_id')->references('id')->on('halls');*/
-            $table->integer('seat');
+            $table->integer('seat_number');
         });
     }
 
