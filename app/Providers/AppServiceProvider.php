@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('pagination::default');
 
         Gate::define('destroy-seat', function (User $user, Seat $seat) {
-            return $user->is_admin OR $seat->hall_id == "2";
+            return $user->is_admin OR $seat->hall_id == 2;
         });
     }
 }

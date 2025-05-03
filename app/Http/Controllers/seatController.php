@@ -19,7 +19,10 @@ class seatController extends Controller
 
     public function create()
     {
-        return view('seat_create', ['halls' => hall::all()]);
+        return view('seat_create', [
+            'halls' => hall::all(),
+            'user' => auth()->user()
+        ]);
     }
 
     public function edit(string $id)
@@ -33,12 +36,12 @@ class seatController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'seat_number' => 'required',
             'hall_id' => 'required|integer'
         ]);
 
         $seat = new Seat();
-        $seat->seat_number = $validated['name'];
+        $seat->seat_number = $validated['seat_number'];
         $seat->hall_id = $validated['hall_id'];
         $seat->save();
 
@@ -48,12 +51,12 @@ class seatController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'seat_number' => 'required',
             'hall_id' => 'required|integer'
         ]);
 
         $seat = Seat::findOrFail($id);
-        $seat->seat_number = $validated['name'];
+        $seat->seat_number = $validated['seat_number'];
         $seat->hall_id = $validated['hall_id'];
         $seat->save();
 
@@ -62,11 +65,13 @@ class seatController extends Controller
 
     public function destroy(string $id)
     {
-        if (! Gate::allows('destroy-seat', Seat::all()->where('id', $id)->first())) {
-            return redirect('/error')->with('message',
-            'У вас нет разрешения на удаление места номер ' . $id);
+        $seat = Seat::findOrFail($id);
+
+        if (! Gate::allows('destroy-seat', $seat)) {
+            return redirect()->route('error')->with('message', 'У вас нет разрешения на удаление места номер ' . $id);
         }
-        Seat::destroy($id);
-        return redirect('/seat');
+
+        $seat->delete();
+        return redirect('/seat')->with('success', 'Место успешно удалено');
     }
 }

@@ -42,4 +42,4 @@ Route::post('/auth', [LoginController::class, 'authenticate']);
 
 Route::get('/error', function () {
     return view('error', ['message' => session('message')]);
-});
+})->name('error');
